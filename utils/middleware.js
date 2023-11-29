@@ -9,6 +9,11 @@ const responseLogger = (request, response, next) => {
     next();
 };
 
+const requestLogger = (request, response, next) => {
+
+    next();
+};
+
 module.exports = {
     requestLogger,
     responseLogger
