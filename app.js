@@ -1,29 +1,35 @@
 const express = require('express');
+// import cors
 const cors = require('cors');
-// import userRouter
-const usersRouter = require('./controllers/users');
-const loginRouter = require('./controllers/login');
-const notesRouter = require('./controllers/notes');
-const middleware = require('./utils/middleware');
-const forgotPasswordRouter = require('./controllers/forgotPassword');
-const resetPasswordRouter = require('./controllers/resetPassword');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const userRoutes = require('./routes/userRoutes');
+const config = require('./utils/config');
 
-// create a new express app
 const app = express();
+
+// set the strictQuery option to false to allow for querying by id
+mongoose.set('strictQuery', false);
+
+// Connect to MongoDB
+mongoose.connect(config.mongoURI)
+mongoose.connection.on('connected', () => {
+  console.log('Connected to MongoDB');
+});
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
+});
 
 // use the cors middleware
 app.use(cors());
-// use the express.json middleware
-app.use(express.json());
-app.use(middleware.requestLogger);
-app.use(middleware.responseLogger);
+// Middleware
+app.use(bodyParser.json());
 
-// define the endpoints here
-app.use('/api/users', usersRouter);
-app.use('/api/login', loginRouter);
-app.use('/api/notes', notesRouter);
-app.use('/api/forgot-password', forgotPasswordRouter);
-app.use('/api/reset-password', resetPasswordRouter);
+// Routes
+app.use('/api/users', userRoutes);
 
-// export the app
-module.exports = app;
+// Start server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
