@@ -12,7 +12,7 @@ const app = express();
 mongoose.set('strictQuery', false);
 
 // Connect to MongoDB
-mongoose.connect(config.mongoURI)
+mongoose.connect(config.MONGODB_URI)
 mongoose.connection.on('connected', () => {
   console.log('Connected to MongoDB');
 });
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

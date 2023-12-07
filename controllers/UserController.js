@@ -1,5 +1,4 @@
 // create a user router
-const usersRouter = require('express').Router();
 const User = require('../models/user');
 const authService = require('../services/authService');
 const emailService = require('../services/emailService');
@@ -58,4 +57,3 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-module.exports = usersRouter;

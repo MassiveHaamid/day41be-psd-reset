@@ -1,7 +1,7 @@
 // use a library like nodemailer to send emails
 // Example: nodemailer setup and email sending logic
 const nodemailer = require('nodemailer');
-const config = require('../config/config');
+const config = require('../utils/config');
 const crypto = require('crypto');
 
 const transporter = nodemailer.createTransport({
