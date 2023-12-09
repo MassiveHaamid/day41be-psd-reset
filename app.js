@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 const config = require('./utils/config');
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes);
 
 // Start server
 const PORT = process.env.PORT || 3001;
