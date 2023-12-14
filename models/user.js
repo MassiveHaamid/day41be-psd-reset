@@ -18,8 +18,8 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-// create a User model from the userSchema
-const User = mongoose.model('User', userSchema, 'UserController');
+// Create a User model from the userSchema
+const User = mongoose.model('User', userSchema);
 
-// export the User model
+// Export the User model
 module.exports = User;

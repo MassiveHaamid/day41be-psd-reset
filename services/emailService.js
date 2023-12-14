@@ -7,14 +7,14 @@ const crypto = require('crypto');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'your_email@gmail.com',
-    pass: 'your_email_password',
+    user: 'reshma9298h@gmail.com',
+    pass: 'lxmxebyedbeydxva',
   },
 });
 
 exports.sendResetPasswordEmail = (email, resetToken) => {
   const mailOptions = {
-    from: 'your_email@gmail.com',
+    from: 'reshma9298h@gmail.com',
     to: email,
     subject: 'Password Reset',
     text: `Click the following link to reset your password: ${config.clientURL}/reset-password/${resetToken}`,
